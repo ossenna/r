@@ -1,6 +1,6 @@
 # fonction de conversion de concentration x : nb molecules/um2 --> uM (umol/l) pour volume de v
 conv.conc <- function(x,v){ 
-  c1 <- x
+  c1 <- x*10^-6
   # conversion um2 en um3 
   conv <- ((3*v/(4*pi))^(1/3))/3
   c2 <- c1/conv
