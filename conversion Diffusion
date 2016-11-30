@@ -1,0 +1,33 @@
+### conversion d'une constante de diffusion D (0.05 à 0.45 um2/s, Earnshaw) en constante cinétque k (s-1)
+D <- 0.45
+
+## avec dimensions de Earnshaw. certaines sont des intervalles.
+# CrossSectionArea (r= b(synapse width) =0.2 à 0.8)
+r <- 0.5
+CSA <- 4*r
+
+#dist entre les deux compartiments (dist = a/2, pour 4 valeurs choisies (a= 0.5 à 30 um))
+dist <- c(0.5/2, 5/2, 10/2, 30/2)
+
+# volume b^3 = 0.2^3 à 0.8^3 
+V <- c(0.2^3, 0.3^3, 0.3^5, 0.8^3)
+  
+  
+k <- D*(CSA)/(dist*V)
+k
+
+
+
+## pour les donnees de mon modele
+# crossSectionArea (si psd est un carré de 0.1257 um2, un de ses cotes est le CSA)
+CSA1 <-  sqrt(0.1257)
+
+#dist entre les deux compartiments (si psd et extra-psd sont deux carrés, dont on prend
+#chaqun la moitié d'un coté, donne la distance entre les deux centres de ces carrés)
+dist1 <- 1/2 * (sqrt(0.1257)) + 1/2 * (sqrt(1.257))
+
+#volume/surface 0.1257 um2 
+V1 <- 0.1247
+
+k1 <- D*(CSA1)/(dist1*V1)
+k1
