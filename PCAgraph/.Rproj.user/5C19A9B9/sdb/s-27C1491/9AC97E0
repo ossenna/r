@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "## Étape 0. Indiquer l'espace de travail et charger les données dans la matrice D\n##\nsetwd(\"~/Desktop/R_mydirectory/devoir1\")\nD <- matrix(scan(\"Q1_donnees.dat\"),15,9,byrow=TRUE)\nD\n\n## Étape 1. Centrer les données sur la moyenne en créant la matrice dprime\n##\ndprime <- D-rowMeans(D)\ndprime\n\n## Étape 2. Calculer la matrice de covariance de dprime, appelée \"A\"\n##\nA <- (1/length(dprime)) * dprime %*% t(dprime)\nA\n\n## Étape 3. Trouver les valeurs et vecteurs propres unitaires de A, en ordre décroissant ( ce que R fait automatiquement)\n##\n  # Valeurs propres\nvalpropres <- eigen(A)$values\n  # Vecteurs propres\nvectpropres <- eigen(A)$vectors\n  # Taux de variance expliquée\nvarexpl <- valpropres/sum(valpropres)\n\n## Étape 4. Créer la matrice W des vecteurs propres unitaires jusqu'à 90% de variance expliquée et en ordre décroissant, \n## puis calculer la matrice transposée orthogonale  qui permettra la rotation des données initiales\n##\nz <- cumsum(varexpl)\nfor (i in 1:length(varexpl)) {\n  if (z[i] < .90) {\n   (cumsum(varexpl[1:(i+1)]))\n   W <- (vectpropres[,1:(i+1)])\n  print(W)\n  }\n}\n\n  # Matrice transposée Wt\nWt <- t(W)\nWt\n\n## Étape 5. Calculer la matrice transformée dpca en multipliant la matrice centrée dprime avec la matrice de rotation, Wt\n##\ndpca <- Wt %*% dprime\ndpca\n\n## Étape 6. Visualisation des données et constatation des groupes principaux\n##\ndatadpca <- as.data.frame(t(dpca))\ncolnames(datadpca) <- c(\"group1\", \"group2\")\np <- ggplot(datadpca, aes(group1, group2, color=group1))\np+geom_point()\np+ geom_label(position=\"nudge\")\n",
+    "created" : 1474636636713.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2725020184",
+    "id" : "9AC97E0",
+    "lastKnownWriteTime" : 1474991833,
+    "last_content_update" : 1474991833639,
+    "path" : "~/Desktop/R_mydirectory/devoir1/Question1.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

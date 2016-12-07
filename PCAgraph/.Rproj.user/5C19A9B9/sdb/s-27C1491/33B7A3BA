@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#ACP\n# 1. Centrer les données sur la moyenne\nx1<-c(3.30,\t0.03,\t9.68, 5.52, 4.14, 3.19, 0.07, 3.38)\nx1\nx2 <-c(2.51, -0.40, 7.33, 5.11, 2.96, 3.47, 0.66, 2.67)\nx2\nplot(x1,x2)\nmoyx1<-mean(x1)\nmoyx1\nmoyx2<-mean(x2)\nmoyx2\nx1prime<-(x1-moyx1)\nx1prime\nx2prime<-(x2-moyx2)\nx2prime\n##indiquer le nombre de lignes de la matrice D'\nDprime<-matrix(c(x1prime,x2prime), nrow=2, ncol=8, byrow=TRUE)\nDprime\nplot(x1prime, x2prime)\n\n#2. Calculer la matrice de covariance A\na<- var(x1)\nb<- cov(x1,x2)\nc<- cov(x2,x1)\nd<- var(x2)\nA <- matrix(c(a,b,c,d), nrow=2, ncol=2, byrow=TRUE)\nA\n\n#3.Trouver les valeurs propres lambda et les vecteurs propres unitaires (x1,x2) de A\neigen(A)\neigen(A)$vectors\n\n#4. Créer la matrice W en ordre décroissant des vecteurs propres et sa transposée Wt\nW<-matrix(eigen(A)$vectors, nrow=2, ncol=2)\nWt<-t(W)\n  \n#5. Rotation des données par la matrice Wt\nDpca <- Wt %*% Dprime\nDpca\nplot(Dpca[1,], Dpca[2,], cex=0.8, xlim=c(-6,6), ylim=c(-6,6))\ntext(Dpca[1,], Dpca[2,], paste(round(Dpca[1,],2), round(Dpca[2,],2), sep=\", \"), cex=.8, pos=1)\n\n#6. fraction de variance de la composante principale\neigen(A)$values[1]/(eigen(A)$values[1]+eigen(A)$values[2])\n\n\n",
+    "created" : 1474636904925.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "476620241",
+    "id" : "33B7A3BA",
+    "lastKnownWriteTime" : 1474469021,
+    "last_content_update" : 1474650889361,
+    "path" : "~/Desktop/Aspects bioinfo/Cours 2/PCA_Rex1.R",
+    "project_path" : null,
+    "properties" : {
+        "source_window_id" : ""
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
