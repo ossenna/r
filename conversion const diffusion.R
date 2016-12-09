@@ -20,8 +20,8 @@ k
 
 ## pour les donnees de mon modele
 D1 <- 0.2
-# crossSectionArea (si psd est un carré de 0.1257 um2, un de ses cotes est le CSA)
-#volume spine v=0.09 um3 donc valeur maximale de CSA: 
+# crossSectionArea 
+#volume spine v=0.09 (demi-sphere) um3 donc valeur maximale de CSA pour sphere = 0.18: 
 ray = (0.18*3/4/pi)^(1/3)
 CSA1 <-  2*pi*ray
 
