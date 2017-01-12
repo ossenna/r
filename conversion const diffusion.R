@@ -1,52 +1,28 @@
-### conversion d'une constante de diffusion D (0.05 à 0.45 um2/s, Earnshaw) en constante cinétque k (s-1)
-D <- 0.45
-
-## avec dimensions de Earnshaw. certaines sont des intervalles.
-# CrossSectionArea (r= b(synapse width) =0.2 à 0.8)
-r <- 0.5
-CSA <- 4*r
-
-#dist entre les deux compartiments (dist = a/2, pour 4 valeurs choisies (a= 0.5 à 30 um))
-dist <- c(0.5/2, 5/2, 10/2, 30/2)
-
-# volume b^3 = 0.2^3 à 0.8^3 
-V <- c(0.2^3, 0.3^3, 0.3^5, 0.8^3)
-
-
-k <- D*(CSA)/(dist*V)
-k
-
-
-
-## pour les donnees de mon modele
+## pour les donnees de mon modele REACTION DIRECTE (kf)
 D1 <- 0.2
 # crossSectionArea 
-#volume spine v=0.09 (demi-sphere) um3 donc valeur maximale de CSA pour sphere = 0.18: 
-ray = (0.18*3/4/pi)^(1/3)
-CSA1 <-  2*pi*ray
+CSA1 <-  0.63
 
-#dist entre les deux compartiments (moitié de ray + 1um rayon dendrite)
-dist1 <- 1 + ray/2
+#dist entre les deux compartiments
+dist1 <- 0.5451
 
-#volume/surface 0.1257 um2 
-V1 <- 1.257
+#volume/surface finale
+V1 <- 0.656
 
-k1 <- D1*(CSA1)/(dist1*V1)
-k1
+kf <- D1*(CSA1)/(dist1*V1)
 
 
-## pour les donnees de mon modele REACTION INVERSE (koff)
+## pour les donnees de mon modele REACTION INVERSE (kr)
 D2 <- 0.2
-# crossSectionArea (si psd est un carré de 0.1257 um2, un de ses cotes est le CSA)
-#volume spine v=0.09 um3 donc valeur maximale de CSA: 
-ra = (0.18*3/4/pi)^(1/3)
-CSA2 <-  2*pi*ra
+# crossSectionArea
+CSA2 <-  CSA1
 
-#dist entre les deux compartiments (moitié de ray + 1um rayon dendrite)
-dist2 <- 1 + ra/2
+#dist entre les deux compartiments
+dist2 <- dist1
 
-#volume/surface dendrite 2*pi*r*h - cou épine pi*r^2
-V2 <- 2*pi*1*1 - pi*ra^2
+#volume/surface final
+V2 <- 0.31416
 
-k2 <- D2*(CSA2)/(dist2*V2)
-k2
+kr <- D2*(CSA2)/(dist2*V2)
+kf
+kr
