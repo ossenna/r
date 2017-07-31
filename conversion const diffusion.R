@@ -1,11 +1,11 @@
 ## pour les donnees de mon modele REACTION DIRECTE (kf)
-D1 <- 0.2
-# crossSectionArea 
-CSA1 <-  0.63
 
+# constante de diffusion Dout selon Czondor et al. (0.2 um2/s)
+D_out1 <- 0.2
+# crossSectionArea : zone d'intersection entre le cou de rayon r et la dendrite
+CSA1 <-  0.63
 #dist entre les deux compartiments
 dist1 <- 0.5451
-
 #volume/surface finale
 V1 <- 0.656
 
